@@ -17,8 +17,8 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+                <category android:name="kr.robomation.physical.albert" />
+            </intent-filter>            
         </activity>
     </application>
 
