@@ -25,14 +25,8 @@
 	        android:id="@+id/main_button2"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="들판" />	    
+	        android:text="야외" />	    
     
-		<Button
-	        android:id="@+id/main_button3"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="정글" />
-	    
     </LinearLayout>
 
 </FrameLayout>

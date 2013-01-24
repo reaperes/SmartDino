@@ -1,7 +1,7 @@
 package nhk.raon.smartdino.logo;
 
 import nhk.raon.smartdino.R;
-import nhk.raon.smartdino.login.LoginActivity;
+import nhk.raon.smartdino.login.CharSelectActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,7 +24,7 @@ public class LogoActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				if(v.getTag() == obj) {
-		    		Intent intent = new Intent().setClass(LogoActivity.this, LoginActivity.class);
+		    		Intent intent = new Intent().setClass(LogoActivity.this, CharSelectActivity.class);
 		    		startActivity(intent);
 		    		finish();
 				}

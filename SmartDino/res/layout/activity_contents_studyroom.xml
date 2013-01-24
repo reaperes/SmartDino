@@ -9,4 +9,34 @@
         android:layout_height="match_parent"
         android:src="@drawable/background_contents_studyroom" />
 
+    <ImageView
+        android:id="@+id/contents_studyroom_memory"
+        android:layout_width="288px"
+        android:layout_height="410px"
+        android:layout_marginLeft="125px"
+		android:background="@drawable/item_contents_studyroom_memory" />
+
+    <ImageView
+        android:id="@+id/contents_studyroom_knowledge"
+        android:layout_width="251px"
+        android:layout_height="330px"
+        android:layout_marginLeft="310px"
+		android:background="@drawable/item_contents_studyroom_knowledge" />
+
+    <ImageView
+        android:id="@+id/contents_studyroom_english"
+        android:layout_width="278px"
+        android:layout_height="217px"
+        android:layout_marginTop="466px"
+        android:layout_marginLeft="245px"
+		android:background="@drawable/item_contents_studyroom_english" />   
+    
+    <ImageView
+        android:id="@+id/contents_studyroom_math"
+        android:layout_width="158px"
+        android:layout_height="197px"
+        android:layout_marginTop="368px"
+        android:layout_marginLeft="898px"
+		android:background="@drawable/item_contents_studyroom_math" />
+        
 </FrameLayout>
