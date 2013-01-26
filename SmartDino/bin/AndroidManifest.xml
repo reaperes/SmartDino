@@ -16,10 +16,11 @@
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+	            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="kr.robomation.physical.albert" />
-            </intent-filter>            
+	            <category android:name="kr.robomation.physical.albert" />
+
+            </intent-filter>
         </activity>        
 
         <activity android:name=".login.CharSelectActivity"
@@ -58,8 +59,8 @@
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW" /> 
-            </intent-filter>            
+	            <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
         </activity>
         
         <activity android:name=".contents.catchfruits.CatchFruitsActivity"

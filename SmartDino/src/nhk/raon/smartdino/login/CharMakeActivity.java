@@ -1,29 +1,56 @@
 package nhk.raon.smartdino.login;
 
+import java.io.OutputStreamWriter;
+
 import nhk.raon.smartdino.R;
-import nhk.raon.smartdino.main.MainActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.Button;
+import android.widget.EditText;
 
 public class CharMakeActivity extends Activity {
+	
+	private String FILE_NAME = "1";
+	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charmake);
-	
-        ImageView iv = (ImageView) findViewById(R.id.login_charmake_image_background);
+        
+        Intent intent = getIntent();
+        if (intent.hasExtra("fileName")) {
+        	FILE_NAME = intent.getStringExtra("fileName");
+        }
+        
+        Button button = (Button) findViewById(R.id.login_charmake_button);
         
         final Object obj = new Object();
-        iv.setTag(obj);
-        iv.setOnClickListener(new View.OnClickListener() {
+        button.setTag(obj);
+        button.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				if(v.getTag() == obj) {
-		    		Intent intent = new Intent().setClass(CharMakeActivity.this, MainActivity.class);
+					OutputStreamWriter osw = null;
+					
+					try {
+						osw = new OutputStreamWriter(openFileOutput(FILE_NAME, MODE_PRIVATE));
+						
+						EditText editText = (EditText)findViewById(R.id.login_charmake_edittext);
+						osw.write(editText.getText().toString());
+					} catch (Exception e) {
+						Log.e("NHK", "write file Error");
+					} finally {
+						try {
+							osw.close();
+						} catch (Exception e) {
+						}
+					}
+					
+		    		Intent intent = new Intent().setClass(CharMakeActivity.this, CharSelectActivity.class);
 		    		startActivity(intent);
 		    		finish();
 				}

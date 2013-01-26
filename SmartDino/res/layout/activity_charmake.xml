@@ -9,4 +9,18 @@
         android:layout_height="match_parent"
         android:src="@drawable/background_charmake" />
 
+    <EditText
+        android:id="@+id/login_charmake_edittext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|left"
+        android:ems="10" />
+    
+    <Button
+        android:id="@+id/login_charmake_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:text="생성" />
+
 </FrameLayout>
