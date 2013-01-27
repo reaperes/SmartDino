@@ -3,12 +3,12 @@ package nhk.raon.smartdino.main;
 import nhk.raon.smartdino.R;
 import nhk.raon.smartdino.contents.catchfruits.CatchFruitsActivity;
 import nhk.raon.smartdino.contents.jungle.JungleActivity;
+import nhk.raon.smartdino.contents.shop.ShopActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 public class Main2Activity extends Activity {
 	
@@ -27,8 +27,8 @@ public class Main2Activity extends Activity {
 	    		Intent intent = new Intent().setClass(Main2Activity.this, JungleActivity.class);
 	    		startActivity(intent);
 			} else if(v.getTag() == obj3) {
-//	    		Intent intent = new Intent().setClass(Main2Activity.this, JungleActivity.class);
-//	    		startActivity(intent);
+	    		Intent intent = new Intent().setClass(Main2Activity.this, ShopActivity.class);
+	    		startActivity(intent);
 			} else if(v.getTag() == obj4) {
 	    		Intent intent = new Intent().setClass(Main2Activity.this, MainActivity.class);
 	    		startActivity(intent);
