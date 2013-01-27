@@ -9,6 +9,20 @@
         android:layout_height="match_parent"
         android:src="@drawable/background_main" />
     
+    <ImageView
+        android:id="@+id/main_image_bathtub"
+        android:layout_width="167dp"
+        android:layout_height="157dp"
+        android:layout_marginLeft="282dp"
+		android:src="@drawable/item_main_bathtub" />
+
+    <ImageView
+        android:id="@+id/main_image_bathtub"
+        android:layout_width="167dp"
+        android:layout_height="157dp"
+        android:layout_marginLeft="282dp"
+        android:src="@drawable/item_main_food" />
+    
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"

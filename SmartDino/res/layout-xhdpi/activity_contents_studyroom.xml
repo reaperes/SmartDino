@@ -13,14 +13,14 @@
         android:id="@+id/contents_studyroom_memory"
         android:layout_width="144dp"
         android:layout_height="205dp"
-        android:layout_marginLeft="63dp"
+        android:layout_marginLeft="62dp"
 		android:background="@drawable/item_contents_studyroom_memory" />
 
     <ImageView
         android:id="@+id/contents_studyroom_knowledge"
         android:layout_width="125dp"
         android:layout_height="165dp"
-        android:layout_marginLeft="155dp"
+        android:layout_marginLeft="105dp"
 		android:background="@drawable/item_contents_studyroom_knowledge" />
 
     <ImageView
