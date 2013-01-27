@@ -200,7 +200,7 @@ public class CharSelectActivity extends Activity implements View.OnClickListener
 	private void loadImage() {
 		if(isSaveFile0) {
 			ImageView iv = (ImageView) findViewById(R.id.login_charselect_image_char1);
-			iv.setImageResource(R.drawable.dino);
+			iv.setImageResource(R.drawable.image_dino);
 			
 			TextView tv = (TextView) findViewById(R.id.login_charselect_text_char1);
 			tv.setText(name0);
@@ -213,7 +213,7 @@ public class CharSelectActivity extends Activity implements View.OnClickListener
 		}
 		if(isSaveFile1) {
 			ImageView iv = (ImageView) findViewById(R.id.login_charselect_image_char2);
-			iv.setImageResource(R.drawable.dino);
+			iv.setImageResource(R.drawable.image_dino);
 			
 			TextView tv = (TextView) findViewById(R.id.login_charselect_text_char2);
 			tv.setText(name1);
@@ -226,7 +226,7 @@ public class CharSelectActivity extends Activity implements View.OnClickListener
 		}
 		if(isSaveFile2) {
 			ImageView iv = (ImageView) findViewById(R.id.login_charselect_image_char3);
-			iv.setImageResource(R.drawable.dino);
+			iv.setImageResource(R.drawable.image_dino);
 			
 			TextView tv = (TextView) findViewById(R.id.login_charselect_text_char3);
 			tv.setText(name2);

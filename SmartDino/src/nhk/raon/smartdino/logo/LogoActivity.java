@@ -4,7 +4,9 @@ import nhk.raon.smartdino.R;
 import nhk.raon.smartdino.login.CharSelectActivity;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -30,5 +32,13 @@ public class LogoActivity extends Activity {
 				}
 			}
 		});
+        
+        
+        BitmapFactory.Options opts = new BitmapFactory.Options();
+        opts.inJustDecodeBounds = true;
+        BitmapFactory.decodeResource(getResources(), R.drawable.background_main, opts);
+         
+        Log.d("NHK", "image width = " + opts.outWidth 
+                        + ", height = " + opts.outHeight + ", mime type = " + opts.outMimeType);
 	}
 }
