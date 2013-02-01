@@ -20,7 +20,7 @@
         android:id="@+id/contents_studyroom_knowledge"
         android:layout_width="125dp"
         android:layout_height="165dp"
-        android:layout_marginLeft="105dp"
+        android:layout_marginLeft="155dp"
 		android:background="@drawable/item_contents_studyroom_knowledge" />
 
     <ImageView

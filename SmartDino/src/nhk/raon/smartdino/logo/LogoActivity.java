@@ -34,11 +34,11 @@ public class LogoActivity extends Activity {
 		});
         
         
-        BitmapFactory.Options opts = new BitmapFactory.Options();
-        opts.inJustDecodeBounds = true;
-        BitmapFactory.decodeResource(getResources(), R.drawable.background_main, opts);
-         
-        Log.d("NHK", "image width = " + opts.outWidth 
-                        + ", height = " + opts.outHeight + ", mime type = " + opts.outMimeType);
+//        BitmapFactory.Options opts = new BitmapFactory.Options();
+//        opts.inJustDecodeBounds = true;
+//        BitmapFactory.decodeResource(getResources(), R.drawable.background_main, opts);
+//
+//        Log.d("NHK", "image width = " + opts.outWidth 
+//                        + ", height = " + opts.outHeight + ", mime type = " + opts.outMimeType);
 	}
 }

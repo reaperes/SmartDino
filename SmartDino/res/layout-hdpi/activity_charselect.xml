@@ -1,93 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-
-    <ImageView
-        android:id="@+id/login_charselect_image_background"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/background_charselect" />
+    android:layout_height="match_parent"
+    android:background="@drawable/background_charselect"
+    android:orientation="vertical" >
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" 
+        android:paddingTop="50dp">
 
-	    <LinearLayout
-	        android:layout_width="match_parent"
-	        android:layout_height="220dp"
-	        android:gravity="bottom"
-            android:padding="20dp">
-	
-			<FrameLayout
-    			android:layout_width="wrap_content"
-    			android:layout_height="wrap_content"
-	            android:layout_weight="1" 
-	            android:layout_marginLeft="50dp">
-	        
-		        <ImageView
-		            android:id="@+id/login_charselect_image_char1"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:src="@drawable/image_char_egg" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal|center_vertical" >
 
-	            <TextView
-	                android:id="@+id/login_charselect_text_char1"
-	                android:layout_width="wrap_content"
-	                android:layout_height="wrap_content"
-	                android:text="새로 시작하기" />
+            <TextView
+                android:id="@+id/login_charselect_text_char0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="새로 시작하기"
+                android:textColor="#000000"
+                android:textSize="22sp" />
 
-			</FrameLayout>
-	
-			<FrameLayout
-    			android:layout_width="wrap_content"
-    			android:layout_height="wrap_content"
-	            android:layout_weight="1" >
-	        
-		        <ImageView
-		            android:id="@+id/login_charselect_image_char2"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:src="@drawable/image_char_egg" />
+            <ImageView
+                android:id="@+id/login_charselect_image_char0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/login_charselect_text_char0"
+                android:paddingTop="20dp"
+                android:src="@drawable/image_char_egg" />
+        </RelativeLayout>
 
-	            <TextView
-	                android:id="@+id/login_charselect_text_char2"
-	                android:layout_width="wrap_content"
-	                android:layout_height="wrap_content"
-	                android:text="새로 시작하기" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal|center_vertical" >
 
-			</FrameLayout>	
+            <TextView
+                android:id="@+id/login_charselect_text_char1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="새로 시작하기"
+                android:textColor="#000000"
+                android:textSize="22sp" />
 
-			<FrameLayout
-    			android:layout_width="wrap_content"
-    			android:layout_height="wrap_content"
-	            android:layout_weight="1" 
-	            android:layout_marginRight="50dp">
-	        
-		        <ImageView
-		            android:id="@+id/login_charselect_image_char3"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:src="@drawable/image_char_egg" />
+            <ImageView
+                android:id="@+id/login_charselect_image_char1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/login_charselect_text_char1"
+                android:paddingTop="20dp"
+                android:src="@drawable/image_char_egg" />
+        </RelativeLayout>
 
-	            <TextView
-	                android:id="@+id/login_charselect_text_char3"
-	                android:layout_width="wrap_content"
-	                android:layout_height="wrap_content"
-	                android:text="새로 시작하기" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal|center_vertical" >
 
-			</FrameLayout>
-					
-		</LinearLayout>
-	
-	    <Button
-	        android:id="@+id/charselect_button1"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="캐릭터 삭제" />
-    
+            <TextView
+                android:id="@+id/login_charselect_text_char2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="새로 시작하기"
+                android:textColor="#000000"
+                android:textSize="22sp" />
+
+            <ImageView
+                android:id="@+id/login_charselect_image_char2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/login_charselect_text_char2"
+                android:paddingTop="20dp"
+                android:src="@drawable/image_char_egg" />
+        </RelativeLayout>
     </LinearLayout>
-	    
-</FrameLayout>
+
+    <Button
+        android:id="@+id/charselect_button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:text="캐릭터 삭제" />
+
+</LinearLayout>

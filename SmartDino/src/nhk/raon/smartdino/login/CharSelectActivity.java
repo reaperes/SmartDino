@@ -42,9 +42,9 @@ public class CharSelectActivity extends Activity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charselect);
         
-        ImageView iv0 = (ImageView) findViewById(R.id.login_charselect_image_char1);
-        ImageView iv1 = (ImageView) findViewById(R.id.login_charselect_image_char2);
-        ImageView iv2 = (ImageView) findViewById(R.id.login_charselect_image_char3);
+        ImageView iv0 = (ImageView) findViewById(R.id.login_charselect_image_char0);
+        ImageView iv1 = (ImageView) findViewById(R.id.login_charselect_image_char1);
+        ImageView iv2 = (ImageView) findViewById(R.id.login_charselect_image_char2);
         
         iv0.setTag(obj0);
         iv0.setOnClickListener(this);
@@ -199,42 +199,42 @@ public class CharSelectActivity extends Activity implements View.OnClickListener
 	
 	private void loadImage() {
 		if(isSaveFile0) {
-			ImageView iv = (ImageView) findViewById(R.id.login_charselect_image_char1);
+			ImageView iv = (ImageView) findViewById(R.id.login_charselect_image_char0);
 			iv.setImageResource(R.drawable.image_dino);
 			
-			TextView tv = (TextView) findViewById(R.id.login_charselect_text_char1);
+			TextView tv = (TextView) findViewById(R.id.login_charselect_text_char0);
 			tv.setText(name0);
 		} else {
-			ImageView iv = (ImageView) findViewById(R.id.login_charselect_image_char1);
+			ImageView iv = (ImageView) findViewById(R.id.login_charselect_image_char0);
 			iv.setImageResource(R.drawable.image_char_egg);
 			
-			TextView tv = (TextView) findViewById(R.id.login_charselect_text_char1);
+			TextView tv = (TextView) findViewById(R.id.login_charselect_text_char0);
 			tv.setText("새로 시작하기");
 		}
 		if(isSaveFile1) {
-			ImageView iv = (ImageView) findViewById(R.id.login_charselect_image_char2);
+			ImageView iv = (ImageView) findViewById(R.id.login_charselect_image_char1);
 			iv.setImageResource(R.drawable.image_dino);
 			
-			TextView tv = (TextView) findViewById(R.id.login_charselect_text_char2);
+			TextView tv = (TextView) findViewById(R.id.login_charselect_text_char1);
 			tv.setText(name1);
 		} else {
-			ImageView iv = (ImageView) findViewById(R.id.login_charselect_image_char2);
+			ImageView iv = (ImageView) findViewById(R.id.login_charselect_image_char1);
 			iv.setImageResource(R.drawable.image_char_egg);
 			
-			TextView tv = (TextView) findViewById(R.id.login_charselect_text_char2);
+			TextView tv = (TextView) findViewById(R.id.login_charselect_text_char1);
 			tv.setText("새로 시작하기");
 		}
 		if(isSaveFile2) {
-			ImageView iv = (ImageView) findViewById(R.id.login_charselect_image_char3);
+			ImageView iv = (ImageView) findViewById(R.id.login_charselect_image_char2);
 			iv.setImageResource(R.drawable.image_dino);
 			
-			TextView tv = (TextView) findViewById(R.id.login_charselect_text_char3);
+			TextView tv = (TextView) findViewById(R.id.login_charselect_text_char2);
 			tv.setText(name2);
 		} else {
-			ImageView iv = (ImageView) findViewById(R.id.login_charselect_image_char3);
+			ImageView iv = (ImageView) findViewById(R.id.login_charselect_image_char2);
 			iv.setImageResource(R.drawable.image_char_egg);
 			
-			TextView tv = (TextView) findViewById(R.id.login_charselect_text_char3);
+			TextView tv = (TextView) findViewById(R.id.login_charselect_text_char2);
 			tv.setText("새로 시작하기");
 		}
 	}
