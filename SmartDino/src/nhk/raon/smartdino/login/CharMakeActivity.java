@@ -8,8 +8,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 public class CharMakeActivity extends Activity {
 	
@@ -25,7 +25,7 @@ public class CharMakeActivity extends Activity {
         	FILE_NAME = intent.getStringExtra("fileName");
         }
         
-        Button button = (Button) findViewById(R.id.login_charmake_button);
+        ImageView button = (ImageView) findViewById(R.id.login_charmake_imagebutton_ok);
         
         final Object obj = new Object();
         button.setTag(obj);

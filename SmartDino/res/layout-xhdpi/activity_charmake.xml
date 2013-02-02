@@ -1,26 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="@drawable/background_charselect" >
+
+    <RelativeLayout 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
 
     <ImageView
-        android:id="@+id/login_charmake_image_background"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/background_charmake" />
+        android:id="@+id/login_charmake_image_char_egg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/image_char_egg" />
 
     <EditText
         android:id="@+id/login_charmake_edittext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|left"
-        android:ems="10" />
+        android:layout_below="@id/login_charmake_image_char_egg"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/interface_charmake_inputbox"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="20dp"
+        android:singleLine="true"
+        android:maxLength="5" />
+        
+    </RelativeLayout>
     
-    <Button
-        android:id="@+id/login_charmake_button"
+    <ImageView
+        android:id="@+id/login_charmake_imagebutton_ok"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:text="생성" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:paddingBottom="20dp"
+        android:paddingRight="20dp"
+        android:src="@drawable/interface_charmake_button" />
 
-</FrameLayout>
+</RelativeLayout>
