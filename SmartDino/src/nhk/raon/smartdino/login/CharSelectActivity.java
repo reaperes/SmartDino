@@ -163,7 +163,6 @@ public class CharSelectActivity extends Activity implements View.OnClickListener
         	br.close();
         } catch (Exception e) {
         	isSaveFile0 = false;
-        	Log.e("NHK", "file: " + strSaveFile0 + " error");
         }
         
         try {
@@ -178,7 +177,6 @@ public class CharSelectActivity extends Activity implements View.OnClickListener
         	br.close();
         } catch (Exception e) {
         	isSaveFile1 = false;
-        	Log.e("NHK", "file: " + strSaveFile1 + " error");
         }
         
         try {
@@ -193,7 +191,6 @@ public class CharSelectActivity extends Activity implements View.OnClickListener
         	br.close();
         } catch (Exception e) {
         	isSaveFile2 = false;
-        	Log.e("NHK", "file: " + strSaveFile2 + " error");
         }
 	}
 	
