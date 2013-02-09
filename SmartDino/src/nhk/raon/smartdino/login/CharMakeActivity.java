@@ -1,6 +1,7 @@
 package nhk.raon.smartdino.login;
 
 import java.io.OutputStreamWriter;
+import java.util.Random;
 
 import nhk.raon.smartdino.R;
 import android.app.Activity;
@@ -13,7 +14,7 @@ import android.widget.ImageView;
 
 public class CharMakeActivity extends Activity {
 	
-	private String FILE_NAME = "1";
+	private String FILE_NAME;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,8 +40,9 @@ public class CharMakeActivity extends Activity {
 					try {
 						osw = new OutputStreamWriter(openFileOutput(FILE_NAME, MODE_PRIVATE));
 						
-						EditText editText = (EditText)findViewById(R.id.login_charmake_edittext);
-						osw.write(editText.getText().toString());
+//						EditText editText = (EditText)findViewById(R.id.login_charmake_edittext);
+//						osw.write(editText.getText().toString());
+						osw.write(String.valueOf(randomDino()));
 					} catch (Exception e) {
 						Log.e("NHK", "write file Error");
 					} finally {
@@ -56,5 +58,10 @@ public class CharMakeActivity extends Activity {
 				}
 			}
 		});        
+	}
+	
+	public int randomDino() {
+		// it returns a random integer between 0 (inclusive) and 4 (exclusive). ex) 0, 1, 2, 3
+		return new Random().nextInt(4-0)+0;
 	}
 }

@@ -11,24 +11,23 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.widget.Toast;
 
-public class MainView extends SurfaceView implements SurfaceHolder.Callback {
+public class Main2View extends SurfaceView implements SurfaceHolder.Callback {
 	
-	public static final int GO_CONTENTS_STUDYROOM = 1;
-	public static final int GO_MAIN2 = GO_CONTENTS_STUDYROOM + 1;
+	public static final int GO_MAIN = 1;
+	public static final int GO_CONTENTS_CATCHFRUITS = GO_MAIN + 1;
+	public static final int GO_CONTENTS_JUNGLE = GO_MAIN + 2;
+	public static final int GO_CONTENTS_SHOP = GO_MAIN + 3;
 
 	public Object obj = new Object();
 	
-	private MainActivity activity;
-	public MainViewThread thread;
+	private Main2Activity activity;
+	public Main2ViewThread thread;
 	private Dino dino;
 	
 	private Bitmap background;
-	private GraphicObject bathtub;
-	private GraphicObject food;
 
-	public MainView(Context context, MainActivity activity) {
+	public Main2View(Context context, Main2Activity activity) {
 		super(context);
 		this.activity = activity;
 
@@ -56,15 +55,10 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback {
 	}
 	
 	public void update() {
-		switch(collisionCheck()) {
-		case GO_CONTENTS_STUDYROOM:
+		int state = collisionCheck();
+		if(state != 0) {
 			stop();
-			activity.moveActivity(GO_CONTENTS_STUDYROOM);
-			return ;
-			
-		case GO_MAIN2:
-			stop();
-			activity.moveActivity(GO_MAIN2);
+			activity.moveActivity(state);
 			return ;
 		}
 		dino.update();
@@ -89,7 +83,7 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback {
 		stop();
 		
 		// create the game loop thread
-		thread = MainViewThread.getThread(getHolder(), this);
+		thread = Main2ViewThread.getThread(getHolder(), this);
 
 		// make the GamePanel focusable so it can handle events
 		setFocusable(true);
@@ -122,8 +116,6 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback {
 
 	public void render(Canvas canvas) {
 		canvas.drawBitmap(background, 0, 0, null);
-		bathtub.draw(canvas);
-		food.draw(canvas);
 		dino.draw(canvas);
 		
 		// display fps
@@ -142,7 +134,7 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback {
 	
 	private void init_0_grahpicObject() {
 		// create background
-		background = BitmapFactory.decodeResource(getResources(), R.drawable.background_main);
+		background = BitmapFactory.decodeResource(getResources(), R.drawable.background_main2);
 		
 		// create dino
 		Bitmap[] leftBitmap = new Bitmap[2];
@@ -153,24 +145,26 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback {
 		rightBitmap[1] = BitmapFactory.decodeResource(getResources(), R.drawable.animation_char_dino_right1);
 		dino = new Dino(BitmapFactory.decodeResource(getResources(), R.drawable.char_0), leftBitmap, rightBitmap);
 		
-		// create Graphic Objects
-		bathtub = new GraphicObject(BitmapFactory.decodeResource(getResources(), R.drawable.item_main_bathtub));
-		food = new GraphicObject(BitmapFactory.decodeResource(getResources(), R.drawable.item_main_food));
-		
 		DisplayMetrics displayMetrics = new DisplayMetrics();
 		activity.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 		
 		dino.setXY(displayMetrics.widthPixels/2, displayMetrics.heightPixels/2);
-		bathtub.setXY((float)(displayMetrics.widthPixels*0.1), (float)(displayMetrics.heightPixels*0.5));
-		food.setXY((float)(displayMetrics.widthPixels*0.75), (float)(displayMetrics.heightPixels*0.66));
 	}
 	
 	public int collisionCheck() {
-		if(dino.x > 125 && dino.x < 270 && dino.y < 280 && dino.y > 75)
-			return GO_CONTENTS_STUDYROOM;
+		if(dino.x > 136 && dino.x < 265 && dino.y > 100 && dino.y > 170)
+			return GO_CONTENTS_JUNGLE;
 		
-		if(dino.x > 930 && dino.x < 1140 && dino.y < 255 && dino.y > 15)
-			return GO_MAIN2;
+		if(dino.x > 25 && dino.x < 420 && dino.y > 620 )
+			return GO_CONTENTS_CATCHFRUITS;
+
+		if(dino.x > 1100 && dino.y > 510)
+			return GO_CONTENTS_SHOP;
+
+		if(dino.x > 770 && dino.x < 945 && dino.y > 280 && dino.y < 370) {
+			Log.e("NHK", "Dino x,y: " + String.valueOf(dino.x) + " " + String.valueOf(dino.y) );
+			return GO_MAIN;
+		}
 		
 		return 0;
 	}

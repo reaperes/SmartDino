@@ -15,7 +15,8 @@ public class Dino extends GraphicObject {
 	
 	private float dx;
 	private float dy;
-	private float maxSpeed = 10f;
+//	private float maxSpeed = 10f;
+	private float maxSpeed = 20f;
 	private boolean isMoving;
 	
 	public Dino(Bitmap bitmap, Bitmap[] leftBitmap, Bitmap[] rightBitmap) {
