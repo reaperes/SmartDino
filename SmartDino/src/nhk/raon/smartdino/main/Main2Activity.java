@@ -44,6 +44,7 @@ public class Main2Activity extends Activity {
 	    		Intent intent2 = new Intent().setClass(Main2Activity.this, CatchFruitsActivity.class);
 	    		startActivity(intent2);
 	    		isMoving = true;
+	    		finish();
 	    		return ;
 			}
 			
@@ -52,6 +53,7 @@ public class Main2Activity extends Activity {
 	    		Intent intent2 = new Intent().setClass(Main2Activity.this, JungleActivity.class);
 	    		startActivity(intent2);
 	    		isMoving = true;
+	    		finish();
 	    		return ;
 			}
 			
@@ -60,6 +62,7 @@ public class Main2Activity extends Activity {
 	    		Intent intent2 = new Intent().setClass(Main2Activity.this, ShopActivity.class);
 	    		startActivity(intent2);
 	    		isMoving = true;
+	    		finish();
 	    		return ;
 			}
 		}

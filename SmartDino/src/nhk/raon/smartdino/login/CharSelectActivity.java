@@ -65,9 +65,9 @@ public class CharSelectActivity extends Activity implements View.OnClickListener
 	private int dino1_type;
 	private int dino2_type;
 	
-	private String name0;
-	private String name1;
-	private String name2;
+//	private String name0;
+//	private String name1;
+//	private String name2;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -127,80 +127,13 @@ public class CharSelectActivity extends Activity implements View.OnClickListener
 			handleText();
 			break;
 		}
-			
-			
-//			if(isDelete) {
-//				File file = new File("/data/data/nhk.raon.smartdino/files/" + strSaveFile0);
-//				if(file.exists()) {
-//					file.delete();
-//					
-//					loadData();
-//					loadImage();
-//					
-//					isDelete = false;
-//				}
-//			} else {
-//				if(isSaveFile0) {
-//		    		Intent intent = new Intent().setClass(CharSelectActivity.this, MainActivity.class);
-//		    		startActivity(intent);
-//		    		finish();
-//				} else {
-//					Intent intent = new Intent(this, CharMakeActivity.class);
-//		    		intent.putExtra("fileName", strSaveFile0);
-//		    		startActivity(intent);
-//		    		finish();
-//				}
-//			}
-//		} else if(v.getTag() == obj1) {
-//			if(isDelete) {
-//				File file = new File("/data/data/nhk.raon.smartdino/files/" + strSaveFile1);
-//				if(file.exists()) {
-//					file.delete();
-//					
-//					loadData();
-//					loadImage();
-//					
-//					isDelete = false;
-//				}
-//			} else {			
-//				if(isSaveFile1) {
-//		    		Intent intent = new Intent().setClass(CharSelectActivity.this, MainActivity.class);
-//		    		startActivity(intent);
-//		    		finish();
-//				} else {
-//		    		Intent intent = new Intent().setClass(CharSelectActivity.this, CharMakeActivity.class);
-//		    		intent.putExtra("fileName", strSaveFile1);
-//		    		startActivity(intent);
-//		    		finish();
-//				}
-//			}
-//		} else if(v.getTag() == obj2) {
-//			if(isDelete) {
-//				File file = new File("/data/data/nhk.raon.smartdino/files/" + strSaveFile2);
-//				if(file.exists()) {
-//					file.delete();
-//					
-//					loadData();
-//					loadImage();
-//					
-//					isDelete = false;
-//				}
-//			} else {
-//				if(isSaveFile2) {
-//		    		Intent intent = new Intent().setClass(CharSelectActivity.this, MainActivity.class);
-//		    		startActivity(intent);
-//		    		finish();
-//				} else {
-//		    		Intent intent = new Intent().setClass(CharSelectActivity.this, CharMakeActivity.class);
-//		    		intent.putExtra("fileName", strSaveFile2);
-//		    		startActivity(intent);
-//		    		finish();
-//				}
-//			}
-//		} else if(v.getTag() == obj3) {
-//			Toast.makeText(this, "어떤 공룡을 삭제하겠습니까?", Toast.LENGTH_SHORT).show();
-//			isDelete = true;
-//		}
+	}
+	
+	private void goMain(int DinoType) {
+		SmartDino.Dino_Type = DinoType;
+		Intent intent = new Intent().setClass(CharSelectActivity.this, MainActivity.class);
+		startActivity(intent);
+		finish();
 	}
 	
 	private void handlePointer(int n) {
@@ -208,9 +141,7 @@ public class CharSelectActivity extends Activity implements View.OnClickListener
 		case POINTER_0:
 			if(pointerState == POINTER_0) {
 				if(isSaveFile0) {
-		    		Intent intent = new Intent().setClass(CharSelectActivity.this, MainActivity.class);
-		    		startActivity(intent);
-		    		finish();
+					goMain(dino0_type);
 				} else {
 		    		Intent intent = new Intent().setClass(CharSelectActivity.this, CharMakeActivity.class);
 		    		intent.putExtra("fileName", strSaveFile0);
@@ -229,9 +160,7 @@ public class CharSelectActivity extends Activity implements View.OnClickListener
 		case POINTER_1:
 			if(pointerState == POINTER_1) {
 				if(isSaveFile1) {
-		    		Intent intent = new Intent().setClass(CharSelectActivity.this, MainActivity.class);
-		    		startActivity(intent);
-		    		finish();
+					goMain(dino1_type);
 				} else {
 		    		Intent intent = new Intent().setClass(CharSelectActivity.this, CharMakeActivity.class);
 		    		intent.putExtra("fileName", strSaveFile1);
@@ -250,9 +179,7 @@ public class CharSelectActivity extends Activity implements View.OnClickListener
 		case POINTER_2:
 			if(pointerState == POINTER_2) {
 				if(isSaveFile2) {
-		    		Intent intent = new Intent().setClass(CharSelectActivity.this, MainActivity.class);
-		    		startActivity(intent);
-		    		finish();
+					goMain(dino2_type);
 				} else {
 		    		Intent intent = new Intent().setClass(CharSelectActivity.this, CharMakeActivity.class);
 		    		intent.putExtra("fileName", strSaveFile2);
@@ -330,6 +257,8 @@ public class CharSelectActivity extends Activity implements View.OnClickListener
 			break;
 		}
 	}
+	
+//	private void goMain()
 	
 	private void deleteSaveFile(String str) {
 		File file = new File("/data/data/nhk.raon.smartdino/files/" + str);
@@ -418,27 +347,20 @@ public class CharSelectActivity extends Activity implements View.OnClickListener
 	private void loadDinoImage(ImageView image, int dino_type) {
 		switch(dino_type) {
 		case SmartDino.DINO_TYPE_0:
-			image.setImageResource(R.drawable.char_0);
+			image.setImageResource(R.drawable.char0);
 			break;
 		
 		case SmartDino.DINO_TYPE_1:
-			image.setImageResource(R.drawable.char_1);
+			image.setImageResource(R.drawable.char1);
 			break;
 			
 		case SmartDino.DINO_TYPE_2:
-			image.setImageResource(R.drawable.char_2);
+			image.setImageResource(R.drawable.char2);
 			break;
 
 		case SmartDino.DINO_TYPE_3:
-			image.setImageResource(R.drawable.char_3);
+			image.setImageResource(R.drawable.char3);
 			break;
 		}
 	}
-	
-//    private OnClickListener deleteButtonListener = new OnClickListener() {
-//        public void onClick(View v) {
-//        	Toast.makeText(CharSelectActivity.this, "hi^^", Toast.LENGTH_SHORT).show();
-//        }
-//    };
-
 }

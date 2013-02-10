@@ -1,6 +1,7 @@
 package nhk.raon.smartdino.main;
 
 import nhk.raon.smartdino.R;
+import nhk.raon.smartdino.SmartDino;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,9 +12,14 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.widget.Toast;
 
 public class MainView extends SurfaceView implements SurfaceHolder.Callback {
+	
+	public static final int STATE_INIT			= 0;
+	public static final int STATE_RUNNING		= STATE_INIT + 1;
+	public static final int STATE_ANIMATION		= STATE_INIT + 2;
+	
+	public int State = STATE_INIT;
 	
 	public static final int GO_CONTENTS_STUDYROOM = 1;
 	public static final int GO_MAIN2 = GO_CONTENTS_STUDYROOM + 1;
@@ -25,8 +31,8 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback {
 	private Dino dino;
 	
 	private Bitmap background;
-	private GraphicObject bathtub;
-	private GraphicObject food;
+	public GraphicObject bathtub;
+	public GraphicObject food;
 
 	public MainView(Context context, MainActivity activity) {
 		super(context);
@@ -41,17 +47,22 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback {
 	
 	@Override
 	public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+		Log.e("NHK", "surfaceChanged");
 	}
 
 	@Override
 	public void surfaceCreated(SurfaceHolder holder) {
 		// at this point the surface is created and
 		// we can safely start the game loop
+		Log.e("NHK", "surfaceCreated");
+		
 		start();
+		State = STATE_RUNNING;
 	}
 
 	@Override
 	public void surfaceDestroyed(SurfaceHolder holder) {
+		Log.e("NHK", "surfaceDestroyed");
 		stop();
 	}
 	
@@ -72,7 +83,6 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback {
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-//		Log.e("NHK", "surface view EVENT");
 		
 		if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE)
 			dino.handleActionDown((int) event.getX(), (int) event.getY());
@@ -87,7 +97,7 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback {
 	
 	public void start() {
 		stop();
-		
+
 		// create the game loop thread
 		thread = MainViewThread.getThread(getHolder(), this);
 
@@ -101,12 +111,11 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback {
 	public void stop() {
 		if(thread==null)
 			return ;
-			
+		Log.e("NHK", "Hey Thread stop");
 		thread.setRunning(false);
 		synchronized(this) {
 			this.notify();
 		}
-		Log.d("NHK", "Thread has shut down cleanly");
 	}
 
 	@Override
@@ -145,13 +154,7 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback {
 		background = BitmapFactory.decodeResource(getResources(), R.drawable.background_main);
 		
 		// create dino
-		Bitmap[] leftBitmap = new Bitmap[2];
-		Bitmap[] rightBitmap = new Bitmap[2];
-		leftBitmap[0] = BitmapFactory.decodeResource(getResources(), R.drawable.animation_char_dino_left0);
-		leftBitmap[1] = BitmapFactory.decodeResource(getResources(), R.drawable.animation_char_dino_left1);
-		rightBitmap[0] = BitmapFactory.decodeResource(getResources(), R.drawable.animation_char_dino_right0);
-		rightBitmap[1] = BitmapFactory.decodeResource(getResources(), R.drawable.animation_char_dino_right1);
-		dino = new Dino(BitmapFactory.decodeResource(getResources(), R.drawable.char_0), leftBitmap, rightBitmap);
+		dino = new Dino(activity, SmartDino.Dino_Type);
 		
 		// create Graphic Objects
 		bathtub = new GraphicObject(BitmapFactory.decodeResource(getResources(), R.drawable.item_main_bathtub));
@@ -166,11 +169,23 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback {
 	}
 	
 	public int collisionCheck() {
-		if(dino.x > 125 && dino.x < 270 && dino.y < 280 && dino.y > 75)
-			return GO_CONTENTS_STUDYROOM;
-		
-		if(dino.x > 930 && dino.x < 1140 && dino.y < 255 && dino.y > 15)
-			return GO_MAIN2;
+		switch(SmartDino.Device_Type) {
+		case DisplayMetrics.DENSITY_XHIGH:
+			if(dino.x > 125 && dino.x < 270 && dino.y < 280 && dino.y > 75)
+				return GO_CONTENTS_STUDYROOM;
+			
+			if(dino.x > 930 && dino.x < 1140 && dino.y < 255 && dino.y > 15)
+				return GO_MAIN2;
+			break;
+			
+		case DisplayMetrics.DENSITY_HIGH:
+			if(dino.x > 78 && dino.x < 168 && dino.y < 168 && dino.y > 45)
+				return GO_CONTENTS_STUDYROOM;
+			
+			if(dino.x > 720 && dino.x < 829 && dino.y < 153 && dino.y > 9)
+				return GO_MAIN2;
+			break;
+		}
 		
 		return 0;
 	}

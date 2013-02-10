@@ -4,6 +4,8 @@ import nhk.raon.smartdino.contents.studyroom.StudyRoomActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MotionEvent;
 
 public class MainActivity extends Activity {
 	
@@ -17,14 +19,43 @@ public class MainActivity extends Activity {
         mainView = new MainView(this, MainActivity.this);
 
 		setContentView(mainView);
+	}
 
+	@Override
+	public void onStart() {
+		Log.e("NHK", "onStart");
+		
+		super.onStart();
+	}
+	
+	@Override
+	public void onResume() {
+		Log.e("NHK", "onResume");
+		
+		super.onResume();
 	}
 	
 	@Override
 	public void onStop() {
+		Log.e("NHK", "onStop");
 		mainView.stop();
 		
 		super.onStop();
+	}
+	
+	@Override
+	public void onPause() {
+		Log.e("NHK", "onPause");
+		
+		super.onPause();
+	}
+	
+	@Override
+	public boolean dispatchTouchEvent (MotionEvent ev) {
+//		mainView
+		
+		super.dispatchTouchEvent(ev);
+		return true;
 	}
 	
 	public void moveActivity(int n) {

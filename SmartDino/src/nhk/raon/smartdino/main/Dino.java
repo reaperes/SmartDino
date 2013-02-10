@@ -1,11 +1,16 @@
 package nhk.raon.smartdino.main;
 
+import nhk.raon.smartdino.R;
+import nhk.raon.smartdino.SmartDino;
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.util.Log;
 
 public class Dino extends GraphicObject {
 
+	private Context context;
+	
 	private Bitmap[] leftBitmap = new Bitmap[2];
 	private Bitmap[] rightBitmap = new Bitmap[2];
 	private int animationCount;
@@ -19,11 +24,10 @@ public class Dino extends GraphicObject {
 	private float maxSpeed = 20f;
 	private boolean isMoving;
 	
-	public Dino(Bitmap bitmap, Bitmap[] leftBitmap, Bitmap[] rightBitmap) {
-		super(bitmap);
+	public Dino(Context context, int type) {
+		this.context = context;
 		
-		this.leftBitmap = leftBitmap;
-		this.rightBitmap = rightBitmap;
+		initCharacter(type);
 	}
 	
 	public void update() {
@@ -48,6 +52,8 @@ public class Dino extends GraphicObject {
 		
 			if(++animationCount > 1)
 				animationCount = 0;
+			
+//			Log.e("NHK", "Dino XY: " + String.valueOf(x) + " " + String.valueOf(y));
 		}
 	}
 	
@@ -86,5 +92,41 @@ public class Dino extends GraphicObject {
 			setDstXY(eventX, eventY);
 		else
 			isMoving = false;
+	}
+	
+	private void initCharacter(int type) {
+		switch(type) {
+		case SmartDino.DINO_TYPE_0:
+			setBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.char0));
+			leftBitmap[0] = BitmapFactory.decodeResource(context.getResources(), R.drawable.animation_char0_left0);
+			leftBitmap[1] = BitmapFactory.decodeResource(context.getResources(), R.drawable.animation_char0_left1);
+			rightBitmap[0] = BitmapFactory.decodeResource(context.getResources(), R.drawable.animation_char0_right0);
+			rightBitmap[1] = BitmapFactory.decodeResource(context.getResources(), R.drawable.animation_char0_right1);
+			break;
+			
+		case SmartDino.DINO_TYPE_1:
+			setBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.char1));
+			leftBitmap[0] = BitmapFactory.decodeResource(context.getResources(), R.drawable.animation_char1_left0);
+			leftBitmap[1] = BitmapFactory.decodeResource(context.getResources(), R.drawable.animation_char1_left1);
+			rightBitmap[0] = BitmapFactory.decodeResource(context.getResources(), R.drawable.animation_char1_right0);
+			rightBitmap[1] = BitmapFactory.decodeResource(context.getResources(), R.drawable.animation_char1_right1);
+			break;
+		
+		case SmartDino.DINO_TYPE_2:
+			setBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.char2));
+			leftBitmap[0] = BitmapFactory.decodeResource(context.getResources(), R.drawable.animation_char2_left0);
+			leftBitmap[1] = BitmapFactory.decodeResource(context.getResources(), R.drawable.animation_char2_left1);
+			rightBitmap[0] = BitmapFactory.decodeResource(context.getResources(), R.drawable.animation_char2_right0);
+			rightBitmap[1] = BitmapFactory.decodeResource(context.getResources(), R.drawable.animation_char2_right1);
+			break;
+
+		case SmartDino.DINO_TYPE_3:
+			setBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.char3));
+			leftBitmap[0] = BitmapFactory.decodeResource(context.getResources(), R.drawable.animation_char3_left0);
+			leftBitmap[1] = BitmapFactory.decodeResource(context.getResources(), R.drawable.animation_char3_left1);
+			rightBitmap[0] = BitmapFactory.decodeResource(context.getResources(), R.drawable.animation_char3_right0);
+			rightBitmap[1] = BitmapFactory.decodeResource(context.getResources(), R.drawable.animation_char3_right1);
+			break;
+		}
 	}
 }

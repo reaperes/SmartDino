@@ -1,6 +1,7 @@
 package nhk.raon.smartdino.main;
 
 import nhk.raon.smartdino.R;
+import nhk.raon.smartdino.SmartDino;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -66,8 +67,6 @@ public class Main2View extends SurfaceView implements SurfaceHolder.Callback {
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-//		Log.e("NHK", "surface view EVENT");
-		
 		if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE)
 			dino.handleActionDown((int) event.getX(), (int) event.getY());
 		
@@ -95,12 +94,11 @@ public class Main2View extends SurfaceView implements SurfaceHolder.Callback {
 	public void stop() {
 		if(thread==null)
 			return ;
-			
+		Log.e("NHK", "Hey Stop Thread");			
 		thread.setRunning(false);
 		synchronized(this) {
 			this.notify();
 		}
-		Log.d("NHK", "Thread has shut down cleanly");
 	}
 
 	@Override
@@ -137,13 +135,7 @@ public class Main2View extends SurfaceView implements SurfaceHolder.Callback {
 		background = BitmapFactory.decodeResource(getResources(), R.drawable.background_main2);
 		
 		// create dino
-		Bitmap[] leftBitmap = new Bitmap[2];
-		Bitmap[] rightBitmap = new Bitmap[2];
-		leftBitmap[0] = BitmapFactory.decodeResource(getResources(), R.drawable.animation_char_dino_left0);
-		leftBitmap[1] = BitmapFactory.decodeResource(getResources(), R.drawable.animation_char_dino_left1);
-		rightBitmap[0] = BitmapFactory.decodeResource(getResources(), R.drawable.animation_char_dino_right0);
-		rightBitmap[1] = BitmapFactory.decodeResource(getResources(), R.drawable.animation_char_dino_right1);
-		dino = new Dino(BitmapFactory.decodeResource(getResources(), R.drawable.char_0), leftBitmap, rightBitmap);
+		dino = new Dino(activity, SmartDino.Dino_Type);
 		
 		DisplayMetrics displayMetrics = new DisplayMetrics();
 		activity.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
@@ -152,20 +144,37 @@ public class Main2View extends SurfaceView implements SurfaceHolder.Callback {
 	}
 	
 	public int collisionCheck() {
-		if(dino.x > 136 && dino.x < 265 && dino.y > 100 && dino.y > 170)
-			return GO_CONTENTS_JUNGLE;
-		
-		if(dino.x > 25 && dino.x < 420 && dino.y > 620 )
-			return GO_CONTENTS_CATCHFRUITS;
+		switch(SmartDino.Device_Type) {
+		case DisplayMetrics.DENSITY_XHIGH:
+			if(dino.x > 136 && dino.x < 265 && dino.y > 100 && dino.y > 170)
+				return GO_CONTENTS_JUNGLE;
+			
+			if(dino.x > 25 && dino.x < 420 && dino.y < 620 )
+				return GO_CONTENTS_CATCHFRUITS;
 
-		if(dino.x > 1100 && dino.y > 510)
-			return GO_CONTENTS_SHOP;
+			if(dino.x > 1100 && dino.y > 510)
+				return GO_CONTENTS_SHOP;
 
-		if(dino.x > 770 && dino.x < 945 && dino.y > 280 && dino.y < 370) {
-			Log.e("NHK", "Dino x,y: " + String.valueOf(dino.x) + " " + String.valueOf(dino.y) );
-			return GO_MAIN;
+			if(dino.x > 770 && dino.x < 945 && dino.y > 280 && dino.y < 370) {
+				return GO_MAIN;
+			}
+			break;
+			
+		case DisplayMetrics.DENSITY_HIGH:
+			if(dino.x > 85 && dino.x < 165 && dino.y > 60 && dino.y > 102)
+				return GO_CONTENTS_JUNGLE;
+			
+			if(dino.x > 16 && dino.x < 262 && dino.y < 372 )
+				return GO_CONTENTS_CATCHFRUITS;
+
+			if(dino.x > 687 && dino.y > 306)
+				return GO_CONTENTS_SHOP;
+
+			if(dino.x > 481 && dino.x < 590 && dino.y > 168 && dino.y < 222) {
+				return GO_MAIN;
+			}
+			break;
 		}
-		
 		return 0;
 	}
 }

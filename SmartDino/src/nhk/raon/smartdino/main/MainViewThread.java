@@ -122,7 +122,7 @@ public class MainViewThread extends Thread {
 					}
 
 					if (framesSkipped > 0) {
-						Log.d("NHK", "Skipped:" + framesSkipped);
+//						Log.d("NHK", "Skipped:" + framesSkipped);
 					}
 					// for statistics
 					framesSkippedPerStatCycle += framesSkipped;
@@ -148,7 +148,7 @@ public class MainViewThread extends Thread {
 				e.printStackTrace();
 			}
 		}
-		
+		Log.d("NHK", "Thread has shut down cleanly");
 		MainViewThread.mainViewThread=null;
 	}
 
