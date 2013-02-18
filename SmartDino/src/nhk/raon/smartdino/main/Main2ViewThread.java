@@ -10,7 +10,7 @@ public class Main2ViewThread extends Thread {
 	
 	private static Main2ViewThread main2ViewThread; 
 
-	private final long SLEEP_TIME = 50L;
+	private long SLEEP_TIME;
 	// desired fps
 	private final static int 	MAX_FPS = 50;
 	// maximum number of frames to be skipped
@@ -71,6 +71,7 @@ public class Main2ViewThread extends Thread {
 		super();
 		this.surfaceHolder = surfaceHolder;
 		this.main2View = main2View;
+		SLEEP_TIME = main2View.threadSleepTime;
 	}
 
 	@Override

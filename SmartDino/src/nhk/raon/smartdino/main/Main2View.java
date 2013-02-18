@@ -2,6 +2,7 @@ package nhk.raon.smartdino.main;
 
 import nhk.raon.smartdino.R;
 import nhk.raon.smartdino.SmartDino;
+import nhk.raon.smartdino.StatusBar;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -21,10 +22,16 @@ public class Main2View extends SurfaceView implements SurfaceHolder.Callback {
 	public static final int GO_CONTENTS_SHOP = GO_MAIN + 3;
 
 	public Object obj = new Object();
+
+	public int threadSleepTime=50;
 	
 	private Main2Activity activity;
 	public Main2ViewThread thread;
 	private Dino dino;
+	
+	///////////////////////////////////////////////
+	// StatusBar Variables
+	public StatusBar statusBar;
 	
 	private Bitmap background;
 
@@ -116,6 +123,8 @@ public class Main2View extends SurfaceView implements SurfaceHolder.Callback {
 		canvas.drawBitmap(background, 0, 0, null);
 		dino.draw(canvas);
 		
+		statusBar.draw(canvas);
+		
 		// display fps
 		displayFps(canvas, avgFps);
 	}
@@ -141,6 +150,9 @@ public class Main2View extends SurfaceView implements SurfaceHolder.Callback {
 		activity.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 		
 		dino.setXY(displayMetrics.widthPixels/2, displayMetrics.heightPixels/2);
+		
+		// Status Bar
+		statusBar = new StatusBar(activity);
 	}
 	
 	public int collisionCheck() {

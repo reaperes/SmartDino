@@ -1,11 +1,14 @@
 package nhk.raon.smartdino.contents.studyroom;
 
 import nhk.raon.smartdino.R;
+import nhk.raon.smartdino.SmartDino;
+import nhk.raon.smartdino.StatusBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -15,6 +18,8 @@ public class StudyRoomActivity extends Activity {
 	private final Object obj2 = new Object();
 	private final Object obj3 = new Object();
 	private final Object obj4 = new Object();
+	
+	private StatusBar statusBar;
 	
 	private View.OnClickListener listener = new View.OnClickListener() {
 		@Override
@@ -96,5 +101,28 @@ public class StudyRoomActivity extends Activity {
         
         iv4.setTag(obj4);
         iv4.setOnClickListener(listener);
+        
+        initLayout();
+        
+//        statusBar = new StatusBar(this);
+    }
+    
+    private void initLayout() {
+		ImageView iv = (ImageView) findViewById(R.id.contents_studyroom_dino);
+		
+		switch(SmartDino.Dino_Type) {
+		case SmartDino.DINO_TYPE_0:
+			iv.setImageResource(R.drawable.char0);
+			break;
+		case SmartDino.DINO_TYPE_1:
+			iv.setImageResource(R.drawable.char1);
+			break;
+		case SmartDino.DINO_TYPE_2:
+			iv.setImageResource(R.drawable.char2);
+			break;
+		case SmartDino.DINO_TYPE_3:
+			iv.setImageResource(R.drawable.char3);
+			break;
+		}
     }
 }

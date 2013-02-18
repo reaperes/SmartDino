@@ -1,12 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:weightSum="128"
+    android:background="@drawable/background_contents_shop" >
 
-    <ImageView
-        android:id="@+id/contents_shop_background"
-        android:layout_width="match_parent"
+    <FrameLayout
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:src="@drawable/background_contents_shop" />
+        android:layout_weight="73" >
+        
+        <ImageView
+            android:id="@+id/image_contents_shop_dino"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:scaleX="2"
+            android:scaleY="2" />
+        
+    </FrameLayout>
+    
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:layout_weight="55"
+        android:scrollbarStyle="outsideOverlay"
+        android:scrollbarThumbVertical="@drawable/interface_contents_shop_scrollbar" >
+        
+        <LinearLayout
+            android:id="@+id/layout_contents_shop_scrollview"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical" />
+        
+    </ScrollView>
 
-</FrameLayout>
+</LinearLayout>

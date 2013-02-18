@@ -9,6 +9,10 @@ import android.graphics.Canvas;
 
 public class Dino extends GraphicObject {
 
+	private static final int LEFT=0;
+	private static final int RIGHT=1;
+	private int direction = LEFT;
+	
 	private Context context;
 	
 	private Bitmap[] leftBitmap = new Bitmap[2];
@@ -59,10 +63,17 @@ public class Dino extends GraphicObject {
 	
 	@Override
 	public void draw(Canvas canvas) {
-		if(dx>0)
-			canvas.drawBitmap(rightBitmap[animationCount], x - (rightBitmap[animationCount].getWidth() / 2), y - (rightBitmap[animationCount].getHeight() / 2), null);
-		else
-			canvas.drawBitmap(leftBitmap[animationCount], x - (leftBitmap[animationCount].getWidth() / 2), y - (leftBitmap[animationCount].getHeight() / 2), null);
+		if (isMoving) {
+			if(dx>0)
+				canvas.drawBitmap(rightBitmap[animationCount], x - (rightBitmap[animationCount].getWidth() / 2), y - (rightBitmap[animationCount].getHeight() / 2), null);
+			else
+				canvas.drawBitmap(leftBitmap[animationCount], x - (leftBitmap[animationCount].getWidth() / 2), y - (leftBitmap[animationCount].getHeight() / 2), null);
+		} else {
+			if (direction == RIGHT)
+				canvas.drawBitmap(rightBitmap[animationCount], x - (rightBitmap[animationCount].getWidth() / 2), y - (rightBitmap[animationCount].getHeight() / 2), null);
+			else
+				canvas.drawBitmap(leftBitmap[animationCount], x - (leftBitmap[animationCount].getWidth() / 2), y - (leftBitmap[animationCount].getHeight() / 2), null);
+		}
 	}
 	
 	public void setDstXY(int x, int y) {
@@ -76,6 +87,10 @@ public class Dino extends GraphicObject {
 		dx = maxSpeed * gap_x / gap_xy;
 		dy = maxSpeed * gap_y / gap_xy;
 		
+		if(dx>0)
+			direction=RIGHT;
+		else
+			direction=LEFT;
 		isMoving = true;
 	}
 	

@@ -5,6 +5,7 @@ import nhk.raon.smartdino.SmartDino;
 import nhk.raon.smartdino.login.CharSelectActivity;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -33,8 +34,13 @@ public class LogoActivity extends Activity {
 			}
 		});
         
+        Point point = new Point();
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         SmartDino.Device_Type = metrics.densityDpi;
+        
+        getWindowManager().getDefaultDisplay().getSize(point);
+        SmartDino.Device_Width = point.x;
+        SmartDino.Device_Height = point.y;
 	}
 }

@@ -1,5 +1,6 @@
 package nhk.raon.smartdino.main;
 
+import nhk.raon.smartdino.SmartDino;
 import nhk.raon.smartdino.contents.studyroom.StudyRoomActivity;
 import android.app.Activity;
 import android.content.Intent;
@@ -38,7 +39,7 @@ public class MainActivity extends Activity {
 	@Override
 	public void onStop() {
 		Log.e("NHK", "onStop");
-		mainView.stop();
+//		mainView.stop();
 		
 		super.onStop();
 	}
@@ -52,10 +53,28 @@ public class MainActivity extends Activity {
 	
 	@Override
 	public boolean dispatchTouchEvent (MotionEvent ev) {
-//		mainView
+//		temporary code
+		switch(ev.getAction()) {
+		case MotionEvent.ACTION_DOWN:
+			if(ev.getX() > SmartDino.Device_Width-100 && ev.getY() < 100) {
+				mainView.dino.setMaxSpeed(mainView.dino.getMaxSpeed()+1);
+				return true;
+			} else if(ev.getX() > SmartDino.Device_Width-100 && ev.getY() > SmartDino.Device_Height-100) {
+				mainView.dino.setMaxSpeed(mainView.dino.getMaxSpeed()-1);
+				return true;
+			} else if(ev.getX() < 100 && ev.getY() < 100) {
+				mainView.threadSleepTime = mainView.threadSleepTime + 10;
+				mainView.thread.SLEEP_TIME = mainView.threadSleepTime; 
+				return true;
+			} else if(ev.getX() < 100 && ev.getY() > SmartDino.Device_Height-100) {
+				mainView.threadSleepTime = mainView.threadSleepTime - 10;
+				mainView.thread.SLEEP_TIME = mainView.threadSleepTime;
+				return true;
+			}
+			break;
+		}
 		
-		super.dispatchTouchEvent(ev);
-		return true;
+		return super.dispatchTouchEvent(ev);
 	}
 	
 	public void moveActivity(int n) {
