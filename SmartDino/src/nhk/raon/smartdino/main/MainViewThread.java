@@ -11,6 +11,7 @@ public class MainViewThread extends Thread {
 	private static MainViewThread mainViewThread;
 
 	public long SLEEP_TIME;
+	private long SLEEP_TIME2;
 	// desired fps
 	private final static int MAX_FPS = 50;
 	// maximum number of frames to be skipped
@@ -153,9 +154,22 @@ public class MainViewThread extends Thread {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+			
+			if(SLEEP_TIME2 > 0) {
+				try {
+					Thread.sleep(SLEEP_TIME2);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				SLEEP_TIME2 = 0;
+			}
 		}
-		Log.d("NHK", "Thread has shut down cleanly");
+		Log.e("NHK", "Thread has shut down cleanly");
 		MainViewThread.mainViewThread = null;
+	}
+	
+	public void waitForSecond() {
+		SLEEP_TIME2 = 1000L;
 	}
 
 	/**

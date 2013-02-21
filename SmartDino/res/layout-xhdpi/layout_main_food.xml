@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_main_bathtub"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+	<ImageView
+	    android:id="@+id/image_main_foodAnimation"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center" />
+
+	<TextView 
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_marginBottom="20dp"
+	    android:layout_gravity="center_horizontal"
+	    android:textSize="26sp"
+	    android:textColor="#FFFFFF"
+	    android:text="디노에게 먹이를 주세요" />
+	
+</FrameLayout>

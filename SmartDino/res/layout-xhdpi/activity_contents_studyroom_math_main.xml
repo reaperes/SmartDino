@@ -1,0 +1,45 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_contents_studyroom_math"
+    android:orientation="horizontal" 
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp">
+
+    <ImageView
+        android:id="@+id/image_contents_studyroom_math_main_plus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_weight="1"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/item_contents_studyroom_math_main_plus" />
+
+    <ImageView
+        android:id="@+id/image_contents_studyroom_math_main_minus"        
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_weight="1"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/item_contents_studyroom_math_main_minus" />
+
+    <ImageView
+        android:id="@+id/image_contents_studyroom_math_main_multiplication"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_weight="1"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/item_contents_studyroom_math_main_multiplication" />
+
+    <ImageView
+        android:id="@+id/image_contents_studyroom_math_main_division"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_weight="1"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/item_contents_studyroom_math_main_division" />
+
+</LinearLayout>

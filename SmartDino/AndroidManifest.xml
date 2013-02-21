@@ -73,7 +73,47 @@
 	            <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".contents.studyroom.math.MathActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            <intent-filter>
+	            <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
         
+        <activity android:name=".contents.studyroom.math.SelectLevelActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" /> 
+            </intent-filter>
+        </activity>        
+
+        <activity android:name=".contents.studyroom.math.ReadyActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" /> 
+            </intent-filter>
+        </activity>        
+
+        <activity android:name=".contents.studyroom.math.QuizActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" /> 
+            </intent-filter>
+        </activity>        
+
+        <activity android:name=".contents.studyroom.math.ResultActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" /> 
+            </intent-filter>
+        </activity>		
+		
         <activity android:name=".contents.catchfruits.CatchFruitsActivity"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
