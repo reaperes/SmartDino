@@ -141,10 +141,12 @@ public class CharSelectActivity extends Activity implements View.OnClickListener
 		case POINTER_0:
 			if(pointerState == POINTER_0) {
 				if(isSaveFile0) {
+					SmartDino.Record_Number = 0;
 					goMain(dino0_type);
 				} else {
 		    		Intent intent = new Intent().setClass(CharSelectActivity.this, CharMakeActivity.class);
 		    		intent.putExtra("fileName", strSaveFile0);
+		    		intent.putExtra("dataNumber", 0);
 		    		startActivity(intent);
 		    		finish();
 				}
@@ -160,10 +162,12 @@ public class CharSelectActivity extends Activity implements View.OnClickListener
 		case POINTER_1:
 			if(pointerState == POINTER_1) {
 				if(isSaveFile1) {
+					SmartDino.Record_Number = 1;
 					goMain(dino1_type);
 				} else {
 		    		Intent intent = new Intent().setClass(CharSelectActivity.this, CharMakeActivity.class);
 		    		intent.putExtra("fileName", strSaveFile1);
+		    		intent.putExtra("dataNumber", 1);
 		    		startActivity(intent);
 		    		finish();
 				}
@@ -179,10 +183,12 @@ public class CharSelectActivity extends Activity implements View.OnClickListener
 		case POINTER_2:
 			if(pointerState == POINTER_2) {
 				if(isSaveFile2) {
+					SmartDino.Record_Number = 2;
 					goMain(dino2_type);
 				} else {
 		    		Intent intent = new Intent().setClass(CharSelectActivity.this, CharMakeActivity.class);
 		    		intent.putExtra("fileName", strSaveFile2);
+		    		intent.putExtra("dataNumber", 2);
 		    		startActivity(intent);
 		    		finish();
 				}

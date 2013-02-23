@@ -17,4 +17,8 @@ public class SmartDino {
 	
 	public static int Device_Width;
 	public static int Device_Height;
+	
+	////////////////////////////////////////////////////////////////////////////////
+	// Record Variables
+	public static int Record_Number;
 }

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 public class Ready2Activity extends Activity {
@@ -16,17 +17,16 @@ public class Ready2Activity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_contents_studyroom_math_ready);
+		setContentView(R.layout.activity_contents_studyroom_math_ready2);
 
         Intent intent = getIntent();
         if (intent.hasExtra("gameType"))
         	gameType = intent.getIntExtra("gameType", 0);
         if (intent.hasExtra("gameLevel"))
         	gameLevel = intent.getIntExtra("gameLevel", 0);
-
         
-        LinearLayout ll = (LinearLayout) findViewById(R.id.layout_contents_studyroom_math_ready);
-        ll.setOnClickListener(new OnClickListener() {
+        FrameLayout fl = (FrameLayout) findViewById(R.id.layout_contents_studyroom_math_ready2);
+        fl.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				Intent intent = new Intent(Ready2Activity.this, QuizActivity.class);
 				intent.putExtra("gameType", gameType);

@@ -1,0 +1,51 @@
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/animation_contents_studyroom_math_ready"
+    android:oneshot="true" >
+
+    <item
+        android:drawable="@drawable/animation_contents_studyroom_math_ready0"
+        android:duration="300"/>
+    <item
+        android:drawable="@drawable/animation_contents_studyroom_math_ready1"
+        android:duration="300"/>
+    <item
+        android:drawable="@drawable/animation_contents_studyroom_math_ready2"
+        android:duration="300"/>
+    <item
+        android:drawable="@drawable/animation_contents_studyroom_math_ready3"
+        android:duration="300"/>
+    <item
+        android:drawable="@drawable/animation_contents_studyroom_math_ready4"
+        android:duration="300"/>
+    <item
+        android:drawable="@drawable/animation_contents_studyroom_math_ready5"
+        android:duration="300"/>
+    <item
+        android:drawable="@drawable/animation_contents_studyroom_math_ready6"
+        android:duration="300"/>
+    <item
+        android:drawable="@drawable/animation_contents_studyroom_math_ready7"
+        android:duration="300"/>
+    <item
+        android:drawable="@drawable/animation_contents_studyroom_math_ready8"
+        android:duration="300"/>
+    <item
+        android:drawable="@drawable/animation_contents_studyroom_math_ready9"
+        android:duration="300"/>
+    <item
+        android:drawable="@drawable/animation_contents_studyroom_math_ready10"
+        android:duration="300"/>
+    <item
+        android:drawable="@drawable/animation_contents_studyroom_math_ready11"
+        android:duration="300"/>
+    <item
+        android:drawable="@drawable/animation_contents_studyroom_math_ready12"
+        android:duration="300"/>
+    <item
+        android:drawable="@drawable/animation_contents_studyroom_math_ready13"
+        android:duration="300"/>
+    <item
+        android:drawable="@drawable/animation_contents_studyroom_math_ready14"
+        android:duration="300"/>
+
+</animation-list>

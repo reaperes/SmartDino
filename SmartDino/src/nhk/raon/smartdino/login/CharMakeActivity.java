@@ -4,6 +4,7 @@ import java.io.OutputStreamWriter;
 import java.util.Random;
 
 import nhk.raon.smartdino.R;
+import nhk.raon.smartdino.Record;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.ImageView;
 public class CharMakeActivity extends Activity {
 	
 	private String FILE_NAME;
+	private int dataNumber;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,13 @@ public class CharMakeActivity extends Activity {
         Intent intent = getIntent();
         if (intent.hasExtra("fileName")) {
         	FILE_NAME = intent.getStringExtra("fileName");
+        	dataNumber = intent.getIntExtra("dataNumber", 10);
+        	
+        	if(dataNumber == 10) {
+	    		Intent intent2 = new Intent().setClass(CharMakeActivity.this, CharSelectActivity.class);
+	    		startActivity(intent2);
+	    		finish();
+        	}
         }
         
         ImageView button = (ImageView) findViewById(R.id.login_charmake_imagebutton_ok);
@@ -40,9 +49,9 @@ public class CharMakeActivity extends Activity {
 					try {
 						osw = new OutputStreamWriter(openFileOutput(FILE_NAME, MODE_PRIVATE));
 						
-//						EditText editText = (EditText)findViewById(R.id.login_charmake_edittext);
-//						osw.write(editText.getText().toString());
 						osw.write(String.valueOf(randomDino()));
+						Record record = new Record(dataNumber);
+						record.initRecord(CharMakeActivity.this);
 					} catch (Exception e) {
 						Log.e("NHK", "write file Error");
 					} finally {

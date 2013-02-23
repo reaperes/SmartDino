@@ -1,11 +1,9 @@
 package nhk.raon.smartdino.contents.studyroom.math;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-
 import nhk.raon.smartdino.R;
+import nhk.raon.smartdino.Record;
+import nhk.raon.smartdino.SmartDino;
+import nhk.raon.smartdino.contents.studyroom.StudyRoomActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,68 +29,44 @@ public class SelectLevelActivity extends Activity {
         	gameType = intent.getIntExtra("gameType", 0);
         }
 
-        initDataFile();
         initLayout();
         initLevel();
-	}
-	
-	private void initDataFile() {
-		OutputStreamWriter osw = null;
-		String FILE_NAME = "record00.txt";
-		
-		try {
-			openFileInput(FILE_NAME);
-		} catch(FileNotFoundException fe) {
-			Log.e("NHK", "no data file");
-			try {
-				osw = new OutputStreamWriter(openFileOutput(FILE_NAME, MODE_PRIVATE));
-				osw.write("0000");
-			} catch (Exception e) {
-				Log.e("NHK", "write file Error");
-			} finally {
-				try {
-					osw.close();
-				} catch (Exception e) {
-				}
-			}			
-		}
+        
+        ImageView imageHomeButton = (ImageView) findViewById(R.id.image_contents_studyroom_math_level_returnbutton);
+        imageHomeButton.setOnClickListener(new OnClickListener(){
+        	public void onClick(View v) {
+    			Intent intent = new Intent(SelectLevelActivity.this, MathActivity.class);
+    			startActivity(intent);
+    			finish();
+        	}
+        });
 	}
 	
 	private int readAbleLevel() {
-		BufferedReader br;
-//		StringBuffer sb = new StringBuffer();
-		String str;
-		String fileName = "record00.txt";
-		
-		try {
-			br = new BufferedReader(new InputStreamReader(openFileInput(fileName)));
-			str = br.readLine();
-//        	while((str = br.readLine()) != null) {
-//        		sb.append(str+"\n");
-//        	}
-        	br.close();
-		} catch (Exception e) {
-			Log.e("NHK", "read level ERROR");
-			str = "0000";
-        }
-		
-		char c=0;
+		int point = 0;
 		switch(gameType) {
 		case MathActivity.TYPE_PLUS:
-			c = str.charAt(0);
+			point = 0;
 			break;
 		case MathActivity.TYPE_MINUS:
-			c = str.charAt(1);
+			point = 1;
 			break;
 		case MathActivity.TYPE_MULTIPLICATION:
-			c = str.charAt(2);
+			point = 2;
 			break;
 		case MathActivity.TYPE_DIVISION:
-			c = str.charAt(3);
+			point = 3;
 			break;
 		}
-		str = String.valueOf(c);
-		return Integer.parseInt(str);
+		
+		Record record = new Record(SmartDino.Record_Number);
+		int level=3;
+		try {
+			level = record.getRecord(this, Record.MATH_RECORD, point);
+		} catch (Exception e) {
+			Log.e("NHK_SelectLevelActivity", "failed to get record");
+		}
+		return level;
 	}
 	
 	private void initLayout() {

@@ -3,15 +3,18 @@ package nhk.raon.smartdino.contents.studyroom.math;
 import nhk.raon.smartdino.R;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.LinearLayout;
+import android.os.Handler;
+import android.util.Log;
+import android.widget.ImageView;
 
 public class ReadyActivity extends Activity {
 	
 	private int gameType;
 	private int gameLevel;
+	
+	private AnimationDrawable readyAnimation;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,16 +27,38 @@ public class ReadyActivity extends Activity {
         if (intent.hasExtra("gameLevel"))
         	gameLevel = intent.getIntExtra("gameLevel", 0);
 
-        
-        LinearLayout ll = (LinearLayout) findViewById(R.id.layout_contents_studyroom_math_ready);
-        ll.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				Intent intent = new Intent(ReadyActivity.this, Ready2Activity.class);
-				intent.putExtra("gameType", gameType);
-				intent.putExtra("gameLevel", gameLevel);
-				startActivity(intent);
-				finish();
-			}
-		});
+		ImageView imageView = (ImageView) findViewById(R.id.image_contents_studyroom_math_ready);
+		imageView.setBackgroundResource(R.drawable.animation_contents_studyroom_math_ready);
+		readyAnimation = (AnimationDrawable) imageView.getBackground();
+	}
+	
+	@Override
+	public void onWindowFocusChanged(boolean hasFocus) {
+		super.onWindowFocusChanged(hasFocus);
+		
+		if(hasFocus==true) {
+			readyAnimation.start();
+			
+			int timeBetweenChecks = 300*15 + 300;
+			Handler h = new Handler();
+	        h.postDelayed(new Runnable(){
+	            public void run(){
+	            	while(true) {
+		                if (readyAnimation.getCurrent() == readyAnimation.getFrame(readyAnimation.getNumberOfFrames() - 1)) {
+		                	goReady2Activity();
+		                    break;
+		                }
+	            	}
+	            }
+	        }, timeBetweenChecks);
+		}
+	}
+	
+	private void goReady2Activity() {
+		Intent intent = new Intent(ReadyActivity.this, Ready2Activity.class);
+		intent.putExtra("gameType", gameType);
+		intent.putExtra("gameLevel", gameLevel);
+		startActivity(intent);
+		finish();
 	}
 }

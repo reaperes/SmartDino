@@ -161,6 +161,8 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback {
     				}
     			})
     			.show();
+			} else if(event.getX() < dino.width/2-5 || event.getX() > SmartDino.Device_Width-dino.width/2+5 || event.getY() < dino.height/2-5 || event.getY() > SmartDino.Device_Height-dino.height/2+5) {
+				return true;
 			}
 		}
 		return super.dispatchTouchEvent(event);

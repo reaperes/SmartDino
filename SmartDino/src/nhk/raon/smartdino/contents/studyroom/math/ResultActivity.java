@@ -5,6 +5,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 import nhk.raon.smartdino.R;
+import nhk.raon.smartdino.Record;
+import nhk.raon.smartdino.SmartDino;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +18,7 @@ public class ResultActivity extends Activity {
 	
 	private int gameType;
 	private int gameLevel;
+	private int correctAnswerCount;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +30,11 @@ public class ResultActivity extends Activity {
         	gameType = intent.getIntExtra("gameType", 0);
         if (intent.hasExtra("gameLevel"))
         	gameLevel = intent.getIntExtra("gameLevel", 0);
+        if (intent.hasExtra("correctAnswerCount"))
+        	correctAnswerCount = intent.getIntExtra("correctAnswerCount", 0);
 
+        initDino();
+        initStars();
         saveLevel();
         
         ImageView home = (ImageView) findViewById(R.id.image_contents_studyroom_math_result_home);
@@ -75,66 +82,73 @@ public class ResultActivity extends Activity {
 		}
 	};
 	
-	private void saveLevel() {
-		boolean save=false;
-		OutputStreamWriter osw = null;
-		String FILE_NAME = "record00.txt";
-		
-		BufferedReader br;
-		String str="0000", plus, minus, multiplication, division;
-		
-		try {
-			br = new BufferedReader(new InputStreamReader(openFileInput(FILE_NAME)));
-			str = br.readLine();
-        	br.close();
-		} catch (Exception e) {
-			Log.e("NHK", "read ERROR");
-        }
-		
-		plus = String.valueOf(str.charAt(0));
-		minus = String.valueOf(str.charAt(1));
-		multiplication = String.valueOf(str.charAt(2));
-		division = String.valueOf(str.charAt(3));
-		
-		switch(gameType) {
-		case MathActivity.TYPE_PLUS:
-			if(gameLevel != 3 && gameLevel==Integer.parseInt(plus)){
-				plus = String.valueOf(gameLevel+1);
-				save=true;
-			}
+	private void initDino() {
+		ImageView iv = (ImageView) findViewById(R.id.image_contents_studyroom_math_result_dino);
+		switch(correctAnswerCount) {
+		case 0:
+		case 1:
+		case 2:
+			iv.setImageResource(R.drawable.image_contents_studyroom_math_result_bad);
 			break;
-		case MathActivity.TYPE_MINUS:
-			if(gameLevel != 3 && gameLevel==Integer.parseInt(minus)){
-				minus = String.valueOf(gameLevel+1);
-				save=true;
-			}
+		case 3:
+			iv.setImageResource(R.drawable.image_contents_studyroom_math_result_notbad);
 			break;
-		case MathActivity.TYPE_MULTIPLICATION:
-			if(gameLevel != 3 && gameLevel==Integer.parseInt(multiplication)){
-				multiplication = String.valueOf(gameLevel+1);
-				save=true;
-			}
-			break;
-		case MathActivity.TYPE_DIVISION:
-			if(gameLevel != 3 && gameLevel==Integer.parseInt(division)){
-				division = String.valueOf(gameLevel+1);
-				save=true;
-			}
+		case 4:
+		case 5:			
+			iv.setImageResource(R.drawable.image_contents_studyroom_math_result_good);
 			break;
 		}
-		
-		if(save){
-			try {
-				osw = new OutputStreamWriter(openFileOutput(FILE_NAME, MODE_PRIVATE));
-				osw.write(plus+minus+multiplication+division);
-			} catch (Exception e) {
-				Log.e("NHK", "write file Error");
-			} finally {
-				try {
-					osw.close();
-				} catch (Exception e) {
-				}
-			}
+	}
+	
+	private void initStars() {
+		ImageView iv0 = (ImageView) findViewById(R.id.image_contents_studyroom_math_result_star0);
+		ImageView iv1 = (ImageView) findViewById(R.id.image_contents_studyroom_math_result_star1);
+		ImageView iv2 = (ImageView) findViewById(R.id.image_contents_studyroom_math_result_star2);
+		switch(correctAnswerCount) {
+		case 0:
+		case 1:
+		case 2:
+			iv0.setVisibility(ImageView.INVISIBLE);
+			iv1.setVisibility(ImageView.INVISIBLE);
+			iv2.setVisibility(ImageView.VISIBLE);
+			break;
+		case 3:
+			iv0.setVisibility(ImageView.INVISIBLE);
+			iv1.setVisibility(ImageView.VISIBLE);
+			iv2.setVisibility(ImageView.VISIBLE);
+			break;
+		case 4:
+		case 5:			
+			iv0.setVisibility(ImageView.VISIBLE);
+			iv1.setVisibility(ImageView.VISIBLE);
+			iv2.setVisibility(ImageView.VISIBLE);
+			break;
+		}
+	}	
+	
+	private void saveLevel() {
+		int highLevel;
+		switch(gameType) {
+		case MathActivity.TYPE_PLUS:
+			highLevel = new Record(SmartDino.Record_Number).getRecord(this, Record.MATH_RECORD, 0);
+			if(gameLevel != 3 && gameLevel==highLevel)
+				new Record(SmartDino.Record_Number).setRecord(this, Record.MATH_RECORD, 0, gameLevel+1);
+			break;
+		case MathActivity.TYPE_MINUS:
+			highLevel = new Record(SmartDino.Record_Number).getRecord(this, Record.MATH_RECORD, 1);
+			if(gameLevel != 3 && gameLevel==highLevel)
+				new Record(SmartDino.Record_Number).setRecord(this, Record.MATH_RECORD, 1, gameLevel+1);
+			break;
+		case MathActivity.TYPE_MULTIPLICATION:
+			highLevel = new Record(SmartDino.Record_Number).getRecord(this, Record.MATH_RECORD, 2);
+			if(gameLevel != 3 && gameLevel==highLevel)
+				new Record(SmartDino.Record_Number).setRecord(this, Record.MATH_RECORD, 2, gameLevel+1);
+			break;
+		case MathActivity.TYPE_DIVISION:
+			highLevel = new Record(SmartDino.Record_Number).getRecord(this, Record.MATH_RECORD, 2);
+			if(gameLevel != 3 && gameLevel==highLevel)
+				new Record(SmartDino.Record_Number).setRecord(this, Record.MATH_RECORD, 3, gameLevel+1);
+			break;
 		}
 	}
 }

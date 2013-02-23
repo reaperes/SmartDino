@@ -1,23 +1,26 @@
 package nhk.raon.smartdino.contents.studyroom;
 
-import nhk.raon.smartdino.SmartDino;
-import nhk.raon.smartdino.contents.studyroom.StudyRoomActivity;
+import nhk.raon.smartdino.contents.studyroom.math.MathActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
 
 public class StudyRoomActivity extends Activity {
-	
+
+	public static final int MEMORY = 1;
+	public static final int KNOWLEDGE = 2;
+	public static final int ENGLISH = 3;
+	public static final int MATH = 4;
+
 	private StudyRoomView studyRoomView;
-	private boolean isMoving=false;
-	
+	private boolean isMoving = false;
+
 	@Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        
-        studyRoomView = new StudyRoomView(this, StudyRoomActivity.this);
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		studyRoomView = new StudyRoomView(this, StudyRoomActivity.this);
 
 		setContentView(studyRoomView);
 	}
@@ -25,56 +28,50 @@ public class StudyRoomActivity extends Activity {
 	@Override
 	public void onStart() {
 		Log.e("NHK", "onStart");
-		
+
 		super.onStart();
 	}
-	
+
 	@Override
 	public void onResume() {
 		Log.e("NHK", "onResume");
-		
+
 		super.onResume();
 	}
-	
+
 	@Override
 	public void onStop() {
 		Log.e("NHK", "onStop");
-//		studyRoomView.stop();
-		
+		// studyRoomView.stop();
+
 		super.onStop();
 	}
-	
+
 	@Override
 	public void onPause() {
 		Log.e("NHK", "onPause");
-		
+
 		super.onPause();
 	}
-	
-//	@Override
-//	public boolean dispatchTouchEvent (MotionEvent ev) {
-//		return super.dispatchTouchEvent(ev);
-//	}
-	
+
+	// @Override
+	// public boolean dispatchTouchEvent (MotionEvent ev) {
+	// return super.dispatchTouchEvent(ev);
+	// }
+
 	public void moveActivity(int n) {
-//		switch(n) {
-//		case StudyRoomView.GO_CONTENTS_STUDYROOM:
-//			if(!isMoving) {
-//	    		Intent intent = new Intent().setClass(StudyRoomActivity.this, StudyRoomActivity.class);
-//	    		startActivity(intent);
-//	    		isMoving = true;
-//	    		finish();
-//	    		return ;
-//			}
-//    		
-//		case StudyRoomView.GO_MAIN2:
-//			if(!isMoving) {
-//	    		Intent intent2 = new Intent().setClass(StudyRoomActivity.this, StudyRoom2Activity.class);
-//	    		startActivity(intent2);
-//	    		isMoving = true;
-//	    		finish();
-//	    		return ;
-//			}
-//		}
+		switch (n) {
+		case MEMORY:
+		case KNOWLEDGE:
+		case ENGLISH:
+		case MATH:
+			if (!isMoving) {
+				Intent intent = new Intent().setClass(StudyRoomActivity.this, MathActivity.class);
+				startActivity(intent);
+				finish();
+				return;
+			}
+			break;
+		}
 	}
 }

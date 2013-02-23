@@ -98,6 +98,14 @@
             </intent-filter>
         </activity>        
 
+        <activity android:name=".contents.studyroom.math.Ready2Activity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" /> 
+            </intent-filter>
+        </activity>        
+        
         <activity android:name=".contents.studyroom.math.QuizActivity"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
